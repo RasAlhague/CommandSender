@@ -17,5 +17,15 @@
             android:layout_alignParentStart = "true"
             android:layout_alignParentRight = "true"
             android:layout_alignParentEnd = "true" android:inputType = "number" android:hint = "@string/editText_IP_hint"
-            android:text = "@string/editText_IP_text"/>
+            android:text = "@string/editText_IP_text"
+            android:textSize = "35sp"/>
+    <TextView
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:id = "@+id/textView_connectionStatus"
+            android:layout_below = "@+id/editText_IP"
+            android:layout_alignParentLeft = "true"
+            android:layout_alignParentStart = "true" android:textSize = "25sp"
+            android:layout_alignRight = "@+id/editText_IP"
+            android:layout_alignEnd = "@+id/editText_IP"/>
 </RelativeLayout>
