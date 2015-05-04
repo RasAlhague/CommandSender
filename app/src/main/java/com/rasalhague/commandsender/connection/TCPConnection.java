@@ -26,7 +26,7 @@ public class TCPConnection
 
     public boolean isClosed()
     {
-        return socket != null && !socket.isConnected() && socket.isClosed();
+        return socket == null || socket.isClosed();
     }
 
     public void open(Destination destination)
