@@ -25,7 +25,11 @@ public class StateClosed implements ConnectionState
             tcpConnection.setConnectionState(new StateOpened());
             tcpConnection.notifyConnectionStateListeners(new ConnectionInfo(State.OPENED, destination));
         }
-        else throw new IllegalArgumentException("Cant connect");
+        else
+        {
+            tcpConnection.socket = null;
+            tcpConnection.notifyConnectionStateListeners(new ConnectionInfo(State.REJECTED, destination));
+        }
     }
 
     @Override
