@@ -21,17 +21,14 @@ public class StateOpened implements ConnectionState
         try
         {
             tcpConnection.socket.close();
+            tcpConnection.socket = null;
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
 
-        if (tcpConnection.socket.isClosed())
-        {
-            tcpConnection.setConnectionState(new StateClosed());
-            tcpConnection.notifyConnectionStateListeners(new ConnectionInfo(State.CLOSED, new Destination("", -1)));
-        }
-        else { throw new RuntimeException("Can not close connection"); }
+        tcpConnection.setConnectionState(new StateClosed());
+        tcpConnection.notifyConnectionStateListeners(new ConnectionInfo(State.CLOSED, new Destination("", -1)));
     }
 }
