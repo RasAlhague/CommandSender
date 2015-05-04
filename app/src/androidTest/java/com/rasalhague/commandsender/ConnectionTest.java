@@ -4,14 +4,11 @@ import android.test.AndroidTestCase;
 import com.rasalhague.commandsender.connection.*;
 
 import java.lang.reflect.Field;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 
 public class ConnectionTest extends AndroidTestCase
 {
     TCPConnection tcpConnection;
     Destination   destination;
-    SocketAddress socketAddress;
     final static String HOST = "192.168.1.10";
     final static int    PORT = 4444;
 
@@ -22,7 +19,6 @@ public class ConnectionTest extends AndroidTestCase
 
         tcpConnection = new TCPConnection();
 
-        socketAddress = new InetSocketAddress(HOST, PORT);
         destination = new Destination(HOST, PORT);
     }
 
