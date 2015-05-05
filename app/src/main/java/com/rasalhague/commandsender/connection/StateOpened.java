@@ -32,6 +32,6 @@ public class StateOpened implements ConnectionState
         tcpConnection.setConnectionState(new StateClosed());
         tcpConnection.notifyConnectionStateListeners(new ConnectionInfo(State.CLOSED,
                                                                         new Destination("", -1),
-                                                                        tcpConnection.outToServerStream));
+                                                                        tcpConnection.socket));
     }
 }

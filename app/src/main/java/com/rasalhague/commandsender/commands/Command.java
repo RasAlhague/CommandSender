@@ -1,8 +1,8 @@
 package com.rasalhague.commandsender.commands;
 
-import java.io.DataOutputStream;
+import java.net.Socket;
 
 public interface Command
 {
-    void perform(DataOutputStream outToServer);
+    void perform(Socket outToServer);
 }

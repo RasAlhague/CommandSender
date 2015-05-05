@@ -1,18 +1,18 @@
 package com.rasalhague.commandsender.connection;
 
-import java.io.DataOutputStream;
+import java.net.Socket;
 
 public class ConnectionInfo
 {
-    private final State            state;
-    private final Destination      destination;
-    private final DataOutputStream outToServerStream;
+    private final State       state;
+    private final Destination destination;
+    private final Socket      socket;
 
-    public ConnectionInfo(State state, Destination destination, DataOutputStream outToServerStream)
+    public ConnectionInfo(State state, Destination destination, Socket socket)
     {
         this.state = state;
         this.destination = destination;
-        this.outToServerStream = outToServerStream;
+        this.socket = socket;
     }
 
     public State getState()
@@ -30,9 +30,9 @@ public class ConnectionInfo
         return destination.getPort();
     }
 
-    public DataOutputStream getOutToServerStream()
+    public Socket getSocket()
     {
-        return outToServerStream;
+        return socket;
     }
 
     @Override

@@ -9,19 +9,19 @@ import com.rasalhague.commandsender.connection.TCPConnection;
 import com.rasalhague.commandsender.volumebtncontrol.VolumeButton;
 import com.rasalhague.commandsender.volumebtncontrol.VolumeButtonPressedListener;
 
-import java.io.DataOutputStream;
+import java.net.Socket;
 
 public class CommandPerformer implements TCPConnection.ConnectionStateListener, VolumeButtonPressedListener
 {
     Command command;
-    private DataOutputStream outToServerStream;
+    private Socket socket;
 
     @Override
     public void onConnectionStateChanged(ConnectionInfo connectionInfo)
     {
         if (connectionInfo.getState() == State.OPENED)
         {
-            outToServerStream = connectionInfo.getOutToServerStream();
+            socket = connectionInfo.getSocket();
         }
     }
 
@@ -39,9 +39,9 @@ public class CommandPerformer implements TCPConnection.ConnectionStateListener, 
                 break;
         }
 
-        if (outToServerStream != null && outToServerStream.)
+        if (socket != null && socket.isConnected())
         {
-            command.perform(outToServerStream);
+            command.perform(socket);
         }
     }
 }
