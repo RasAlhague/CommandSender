@@ -66,7 +66,7 @@ public class TCPConnection
 
     public void close()
     {
-        connectionState.close(this);
+        if (isOpen()) connectionState.close(this);
     }
 
     /**
