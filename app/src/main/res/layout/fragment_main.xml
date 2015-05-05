@@ -25,7 +25,7 @@
             android:id = "@+id/textView_connectionStatus"
             android:layout_below = "@+id/editText_IP"
             android:layout_alignParentLeft = "true"
-            android:layout_alignParentStart = "true" android:textSize = "25sp"
+            android:layout_alignParentStart = "true" android:textSize = "20sp"
             android:layout_alignRight = "@+id/editText_IP"
             android:layout_alignEnd = "@+id/editText_IP"/>
 </RelativeLayout>

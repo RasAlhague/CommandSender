@@ -20,4 +20,13 @@ public class Destination
     {
         return port;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Destination{" +
+                "IP='" + IP + '\'' +
+                ", port=" + port +
+                '}';
+    }
 }

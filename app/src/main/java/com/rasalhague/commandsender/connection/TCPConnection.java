@@ -1,5 +1,6 @@
 package com.rasalhague.commandsender.connection;
 
+import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +8,9 @@ import java.util.List;
 public class TCPConnection
 {
     private ConnectionState connectionState;
+    private Destination lastDestination;
     Socket socket;
+    public DataOutputStream outToServerStream;
 
     public TCPConnection()
     {
@@ -29,9 +32,38 @@ public class TCPConnection
         return socket == null || socket.isClosed();
     }
 
-    public void open(Destination destination)
+    public void open(final Destination destination)
     {
-        connectionState.open(this, destination);
+        lastDestination = destination;
+
+        Thread thread = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                connectionState.open(TCPConnection.this, destination);
+            }
+        });
+
+        thread.setName("Connection thread");
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    public void reconnect()
+    {
+        Thread thread = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                connectionState.open(TCPConnection.this, lastDestination);
+            }
+        });
+
+        thread.setName("Connection thread");
+        thread.setDaemon(true);
+        thread.start();
     }
 
     public void close()

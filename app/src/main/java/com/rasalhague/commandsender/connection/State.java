@@ -4,5 +4,5 @@ public enum State
 {
     OPENED,
     CLOSED,
-    REJECTED,
+    FAILED,
 }

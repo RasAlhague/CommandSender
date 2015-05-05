@@ -8,11 +8,12 @@ public class StateOpened implements ConnectionState
     @Override
     public void open(TCPConnection tcpConnection, Destination destination)
     {
-        //TODO reopen when proxy different?
+//        System.err.println("Already opened");
+//
+//        throw new IllegalStateException("TCPConnection Already opened");
 
-        System.err.println("Already opened");
-
-        throw new IllegalStateException("TCPConnection Already opened");
+        close(tcpConnection);
+        tcpConnection.open(destination);
     }
 
     @Override
@@ -29,6 +30,8 @@ public class StateOpened implements ConnectionState
         }
 
         tcpConnection.setConnectionState(new StateClosed());
-        tcpConnection.notifyConnectionStateListeners(new ConnectionInfo(State.CLOSED, new Destination("", -1)));
+        tcpConnection.notifyConnectionStateListeners(new ConnectionInfo(State.CLOSED,
+                                                                        new Destination("", -1),
+                                                                        tcpConnection.outToServerStream));
     }
 }
