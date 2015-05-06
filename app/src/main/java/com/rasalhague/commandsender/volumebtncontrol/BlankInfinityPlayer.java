@@ -8,13 +8,14 @@ import java.io.IOException;
 
 class BlankInfinityPlayer
 {
-    private String blankMp3FilePath = "/Music/1hour.mp3";
+    private String blank1hourMp3FilePath = "/Music/1hour.mp3";
+    private String blank1secMp3FilePath  = "/Music/1sec.mp3";
     private MediaPlayer mediaPlayer;
 
     public BlankInfinityPlayer()
     {
         mediaPlayer = new MediaPlayer();
-        Uri blankMp3FileUri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + blankMp3FilePath);
+        Uri blankMp3FileUri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + blank1hourMp3FilePath);
 
         try
         {
