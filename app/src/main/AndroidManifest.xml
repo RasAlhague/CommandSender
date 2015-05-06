@@ -20,12 +20,6 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name = ".volumebtncontrol.VolumeButtonBroadcastReceiver">
-            <intent-filter>
-                <!--<action android:name = "android.intent.action.MEDIA_BUTTON"/>-->
-                <action android:name = "android.media.VOLUME_CHANGED_ACTION"/>
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

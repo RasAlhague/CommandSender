@@ -1,5 +1,6 @@
 package com.rasalhague.commandsender;
 
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import com.rasalhague.commandsender.gui.IndicatorTextView;
 import com.rasalhague.commandsender.logic.CommandPerformer;
 import com.rasalhague.commandsender.logic.IndicatorTextViewBehavior;
 import com.rasalhague.commandsender.logic.TCPConnectionOnIPChangedHandler;
+import com.rasalhague.commandsender.volumebtncontrol.VolumeButtonBroadcastReceiver;
 import com.rasalhague.commandsender.volumebtncontrol.VolumeButtonManager;
 
 public class MainActivity extends ActionBarActivity
@@ -35,6 +37,9 @@ public class MainActivity extends ActionBarActivity
         indicatorTextViewBehavior = new IndicatorTextViewBehavior(indicatorTextView);
         volumeButtonManager = new VolumeButtonManager();
 
+        registerReceiver(VolumeButtonBroadcastReceiver.getInstance(),
+                         new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
+
         registerRelations();
     }
 
@@ -42,6 +47,8 @@ public class MainActivity extends ActionBarActivity
     protected void onDestroy()
     {
         super.onDestroy();
+
+        unregisterReceiver(VolumeButtonBroadcastReceiver.getInstance());
 
         tcpConnection.close();
 

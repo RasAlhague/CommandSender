@@ -1,16 +1,19 @@
 package com.rasalhague.commandsender.volumebtncontrol;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.WakefulBroadcastReceiver;
 
-public class VolumeButtonBroadcastReceiver extends WakefulBroadcastReceiver
+public class VolumeButtonBroadcastReceiver extends BroadcastReceiver
 {
-    static BroadcastReceiverTarget receiver;
+    private static BroadcastReceiverTarget receiver;
+    private static VolumeButtonBroadcastReceiver instance = new VolumeButtonBroadcastReceiver();
 
-    static void setBroadcastReceiverTarget(BroadcastReceiverTarget receiverTarget)
+    private VolumeButtonBroadcastReceiver() { }
+
+    public static VolumeButtonBroadcastReceiver getInstance()
     {
-        receiver = receiverTarget;
+        return instance;
     }
 
     @Override
@@ -22,5 +25,10 @@ public class VolumeButtonBroadcastReceiver extends WakefulBroadcastReceiver
     interface BroadcastReceiverTarget
     {
         void onReceive(Context context, Intent intent);
+    }
+
+    static void setBroadcastReceiverTarget(BroadcastReceiverTarget receiverTarget)
+    {
+        receiver = receiverTarget;
     }
 }
